@@ -4,7 +4,7 @@
     <title>Rainbow weather box</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="src/styless.css"/>
-    <link rel="stylesheet" href="src/style.css" />
+   
     <script src="src/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -39,7 +39,7 @@
 
     .col2 {
         padding-left: 450px;
-        margin-top: -390px;
+        margin-top: -340px;
         margin-bottom: 30px;
     }
 
@@ -53,22 +53,35 @@
   
 }
 
+h5 {
+  font-size: 14px;
+}
+
 .weatherBox {
   margin-bottom: 15px;
   margin-top: 25px;
-  font-size: 85px;
+  font-size: 75px;
+}
+
+.ikonka {
+font-size: 20px;
+padding: 30px;
 }
 
 .change-units {
   position: relative;
-  font-size: 16px;
-  top: -32px;  
+  font-size: 18px;
+  top: -42px;  
 }
 
 .conditions {
   list-style-type: none;
   font-size: 14px;
   margin-left: -20px;
+}
+
+.conditions:first-letter {
+  text-transform: capitalize;
 }
 
 .searchCity {
@@ -90,11 +103,13 @@
   box-shadow: 4px 8px 8px rgba(185, 181, 247, 0.3);
   font-weight: 600;
 }
+
 .button1:hover {
 background: #FFFCDC;
 color: #8B3277;
 font-weight: 700;
 }
+
 .button2 {
   margin-top: 10px;
   padding: 0 10px;
@@ -107,6 +122,7 @@ font-weight: 700;
   box-shadow: 4px 8px 8px rgba(185, 181, 247, 0.3);
   font-weight: 600;
 }
+
 .button2:hover {
 background: #FFFCDC;
 color: #8B3277;
@@ -143,16 +159,21 @@ hr {
 
             <div class="col1">
                 <div class="placeDate">
-                    <h2 id="cityNow">🌞🌈☔⛄💧❄</h2> 
+                    <h2 id="cityNow">Find weather </br> for your city!</h2> 
                     <h5></h5>
                 </div>  
                     
                 <div class="weatherBox">
-                   <i class="fas fa-cloud"></i>  <span id="celsius">7</span><span class="change-units">°C | F</span>
+                   <img src="" class="ikonka" id="icon" />  
+                   
+                   <span id="celsius">🌈</span><span id="degree-change" class="change-units">
+                   <a href="#" id="celsius-temp">°C </a>|  
+                   <a href="#" id="fahrenheit-temp"> °F</a></span>
+                   
                    <ul class="conditions">
                    <li id="description"> </li>
-                   <li id="humidity">Humidity:  </li> 
-                   <li id="wind"> Wind: </li> 
+                   <li id="humidity"> </li> 
+                   <li id="wind"> </li> 
                   </ul>
                 </div>
 
@@ -243,9 +264,12 @@ let temperature = Math.ceil(response.data.main.temp);
 weatherElement1 = document.querySelector("#celsius");
 weatherElement1.innerHTML = temperature;
 
-let specification = response.data.weather[0].main;
-weatherElement2 = document.querySelector("#description");
-weatherElement2.innerHTML = specification;
+celsiusTemperature = response.data.main.temp;
+
+let descriptionElement = document.querySelector("#description");
+descriptionElement.innerHTML = response.data.weather[0].description;
+
+
 
 let humid =  Math.ceil(response.data.main.humidity);
 weatherElement3 = document.querySelector("#humidity");
@@ -254,6 +278,9 @@ weatherElement3.innerHTML = `Humidity: ${humid}%`;
 let windy = Math.ceil(response.data.wind.speed);
 weatherElement4 = document.querySelector("#wind");
 weatherElement4.innerHTML = `Wind: ${windy} km/h`;
+
+let iconElement =  document.querySelector("#icon");
+iconElement.setAttribute("src", 'http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png');
 }
 
 function findCity(city) {
@@ -274,6 +301,34 @@ let chooseCity = document.querySelector("form");
 chooseCity.addEventListener("submit", newCity);
 
 
+let button = document.querySelector("#current-location");
+button.addEventListener("click", getCurrentPosition);
+
+//celsius and fahren
+
+
+function showFahrenheitTemperature(event) {
+  event.preventDefault();
+  let tempElement = document.querySelector("#degree-change");
+  let fahrenheitDegrees = (celsiusTemperature * 9) / 5 + 32;
+  tempElement.innetHTML = Math.round(fahrenheitDegrees);
+}
+
+function showCelsiusTemperature(event) {
+  event.preventDefault();
+  let tempElement = document.querySelector("#degree-change");
+  tempElement.innetHTML = Math.round(celsiusTemperature);
+}
+
+
+let celsiusTemperature = null;
+
+let fahrenheitLink = document.querySelector("#fahrenheit-temp");
+fahrenheitLink.addEventListener("click", showFahrenheitTemperature);
+
+let celsiusLink = document.querySelector("#celsius-temp");
+celsiusLink.addEventListener("click", showCelsiusTemperature);
+
 
 //geolocalization
 function showPosition(position){
@@ -288,11 +343,6 @@ function showPosition(position){
 function getCurrentPosition() {
   navigator.geolocation.getCurrentPosition(showPosition);
 }
-
-
-let button = document.querySelector("#current-location");
-button.addEventListener("click", getCurrentPosition);
-
 </script>
  
 </html>
