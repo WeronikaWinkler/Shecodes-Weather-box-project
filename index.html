@@ -16,12 +16,12 @@
   <style>
     body {
       margin: 0 auto;
-      width: 700px;
-      height: 500px;
+      width: 750px;
+      height: 550px;
     }
 
     section {
-      margin: 30px;
+      margin: 65px;
       padding-bottom: 25px;
       border-radius: 3%;
       background-image: linear-gradient(to right, #e4afcb 0%, #b8cbb8 0%, #b8cbb8 0%, #e2c58b 30%, #c2ce9c 64%, #7edbdc 100%);
@@ -29,7 +29,7 @@
     }
 
     .row {
-        margin-top: 15px;
+        margin-top: 10px;
         margin-bottom: 30px;
     }
     .col1 {
@@ -40,10 +40,10 @@
     .col2 {
         padding-left: 450px;
         margin-top: -340px;
-        margin-bottom: 30px;
+        font-size: 14px;
     }
 
-    .forecastContent {
+  .forecastContent {
  padding: 25px 
  
 }
@@ -60,7 +60,7 @@ h5 {
 .weatherBox {
   margin-bottom: 15px;
   margin-top: 25px;
-  font-size: 75px;
+  font-size: 65px;
 }
 
 .ikonka {
@@ -96,7 +96,7 @@ padding: 30px;
   padding: 0 10px;
   border-radius: 50px;
   border: solid 1px ;
-  background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);;
+  background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
   border: 3px solid #FFFCDC;
   transition: all 200px ease-in-out;
   cursor: pointer;
@@ -159,7 +159,7 @@ hr {
 
             <div class="col1">
                 <div class="placeDate">
-                    <h2 id="cityNow">Find weather </br> for your city!</h2> 
+                    <h2 id="cityNow">Find the weather </br> in your city!</h2> 
                     <h5></h5>
                 </div>  
                     
@@ -183,38 +183,16 @@ hr {
                     autofocus="on"
                     autocomplete="off"
                     aria-describedby="CityWeather"></input> </br>
-                    <span><button class="button1" id="current-location">Current Position</button></span>
-                    <input type="submit" class="button2" value="Search Location" id="search-location"/> 
+                    <span><button class="button1" id="current-location"><i class="fas fa-map-marker-alt"></i></button></span>
+                    <span><button class="button2" id="search-location">Search</button></span>
+                    <input type="submit" class="button2" value="Search" id="search-location"/> 
                 </form>
                 
             </div>       
           
           
-          <div class="col2">
-                <div class="col-md-">
-                Sun, 14/03/2021 <br/> 
-                <i class="fas fa-cloud"></i> 7 °C
-                </div> 
-                <div class="col-md-">
-                <hr/>
-                Mon, 15/03/2021 <br/> 
-                <i class="fas fa-cloud-rain"></i> 6 °C
-                </div> 
-                <div class="col-md-">
-                <hr/>  
-                Tue, 16/03/2021 <br/> 
-                <i class="fas fa-cloud-rain"></i> 6 °C
-                </div> 
-                <div class="col-md-">
-                <hr/>
-                Wed, 17/03/2021 <br/> 
-                <i class="fas fa-cloud-rain"></i> 6 °C
-                </div> 
-                <div class="col-md-">
-                <hr/>
-                Thu, 18/03/2021 <br/> 
-                <i class="fas fa-cloud-rain"></i> 6 °C
-                </div>
+          <div class="col2" id="forecast">
+             
             </div>
 
           
@@ -250,7 +228,36 @@ let month = months[now.getMonth()];
 
 h5.innerHTML = `${day}, ${date} ${month} ${year}, ${hours}:${minutes}`;
 
+function displayForecast() {
+let forecastElement = document.querySelector("#forecast");
+let forecastHTML = `<div class="col2" id="forecast">`; 
+forecastHTML = forecastHTML + `<div class="col-md-">
+                Sun, 14/03/2021 <br/> 
+                <i class="fas fa-cloud"></i> 7 °C
+                </div> 
+                <div class="col-md-">
+                <hr/>
+                Mon, 15/03/2021 <br/> 
+                <i class="fas fa-cloud-rain"></i> 6 °C
+                </div> 
+                <div class="col-md-">
+                <hr/>  
+                Tue, 16/03/2021 <br/> 
+                <i class="fas fa-cloud-rain"></i> 6 °C
+                </div> 
+                <div class="col-md-">
+                <hr/>
+                Wed, 17/03/2021 <br/> 
+                <i class="fas fa-cloud-rain"></i> 6 °C
+                </div> 
+                <div class="col-md-">
+                <hr/>
+                Thu, 18/03/2021 <br/> 
+                <i class="fas fa-cloud-rain"></i> 6 °C
+                </div>`;;
+forecastElement.innerHTML = forecastHTML;
 
+}
 
 //API weather
 
@@ -309,15 +316,15 @@ button.addEventListener("click", getCurrentPosition);
 
 function showFahrenheitTemperature(event) {
   event.preventDefault();
-  let tempElement = document.querySelector("#degree-change");
+  let tempElement = document.querySelector("#celsius");
   let fahrenheitDegrees = (celsiusTemperature * 9) / 5 + 32;
-  tempElement.innetHTML = Math.round(fahrenheitDegrees);
+  tempElement.innerHTML = Math.round(fahrenheitDegrees);
 }
 
 function showCelsiusTemperature(event) {
   event.preventDefault();
-  let tempElement = document.querySelector("#degree-change");
-  tempElement.innetHTML = Math.round(celsiusTemperature);
+  let tempElement = document.querySelector("#celsius");
+  tempElement.innerHTML = Math.round(celsiusTemperature);
 }
 
 
