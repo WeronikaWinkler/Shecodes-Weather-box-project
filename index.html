@@ -38,15 +38,8 @@
     }
 
     .col2 {
-        padding-left: 450px;
-        margin-top: -340px;
-        font-size: 14px;
+      padding-left: 30px;
     }
-
-  .forecastContent {
- padding: 25px 
- 
-}
 
 .placeDate {
   margin-top: 60px;
@@ -65,13 +58,15 @@ h5 {
 
 .ikonka {
 font-size: 20px;
-padding: 30px;
+padding: 20px;
+
 }
 
 .change-units {
   position: relative;
   font-size: 18px;
   top: -42px;  
+  text-decoration: none;
 }
 
 .conditions {
@@ -159,14 +154,14 @@ hr {
 
             <div class="col1">
                 <div class="placeDate">
-                    <h2 id="cityNow">Find the weather </br> in your city!</h2> 
+                    <h2 id="cityNow">What is the weather?</h2> 
                     <h5></h5>
                 </div>  
                     
                 <div class="weatherBox">
                    <img src="" class="ikonka" id="icon" />  
                    
-                   <span id="celsius">🌈</span><span id="degree-change" class="change-units">
+                   <span id="celsius"><img src="http://openweathermap.org/img/wn/04d@2x.png"/></span><span class="change-units">
                    <a href="#" id="celsius-temp">°C </a>|  
                    <a href="#" id="fahrenheit-temp"> °F</a></span>
                    
@@ -184,7 +179,6 @@ hr {
                     autocomplete="off"
                     aria-describedby="CityWeather"></input> </br>
                     <span><button class="button1" id="current-location"><i class="fas fa-map-marker-alt"></i></button></span>
-                    <span><button class="button2" id="search-location">Search</button></span>
                     <input type="submit" class="button2" value="Search" id="search-location"/> 
                 </form>
                 
@@ -193,7 +187,7 @@ hr {
           
           <div class="col2" id="forecast">
              
-            </div>
+          </div>
 
           
         </div> 
@@ -228,36 +222,43 @@ let month = months[now.getMonth()];
 
 h5.innerHTML = `${day}, ${date} ${month} ${year}, ${hours}:${minutes}`;
 
-function displayForecast() {
+
+//next days forecast
+function formatDay(time) {
+let date = new Date(time + 1000);
+let day = date.getDay();
+
+let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+return days[day];
+}
+
+function displayForecast (response) {
+let forecast = response.data.daily;
 let forecastElement = document.querySelector("#forecast");
-let forecastHTML = `<div class="col2" id="forecast">`; 
-forecastHTML = forecastHTML + `<div class="col-md-">
-                Sun, 14/03/2021 <br/> 
-                <i class="fas fa-cloud"></i> 7 °C
-                </div> 
-                <div class="col-md-">
-                <hr/>
-                Mon, 15/03/2021 <br/> 
-                <i class="fas fa-cloud-rain"></i> 6 °C
-                </div> 
-                <div class="col-md-">
-                <hr/>  
-                Tue, 16/03/2021 <br/> 
-                <i class="fas fa-cloud-rain"></i> 6 °C
-                </div> 
-                <div class="col-md-">
-                <hr/>
-                Wed, 17/03/2021 <br/> 
-                <i class="fas fa-cloud-rain"></i> 6 °C
-                </div> 
-                <div class="col-md-">
-                <hr/>
-                Thu, 18/03/2021 <br/> 
-                <i class="fas fa-cloud-rain"></i> 6 °C
-                </div>`;;
-forecastElement.innerHTML = forecastHTML;
+let forecastHTML = `<div class="row">`;
+let days = ["Thu", "Fri", "Sat", "Sun"];
+
+forecast.forEach(function (forecastDay, index) {
+  if (index < 4) {
+  forecastHTML = forecastHTML + 
+  `<div class="col-2">
+        <div class="weather-forecast-date">${formatDay(forecastDay.dt)}</div>
+        <img
+          src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png"
+          width="38"
+        />
+        <div class="weather-forecast-temperatures">
+          <span class="weather-forecast-temperature-max">${Math.round(forecastDay.temp.max)}</span>
+          <span class="weather-forecast-temperature-min">${Math.round(forecastDay.temp.min)} </span>
+   </div>`;}
+})
+
+ 
+          forecastHTML = forecastHTML + `</div>`;
+          forecastElement.innerHTML = forecastHTML;
 
 }
+
 
 //API weather
 
@@ -287,7 +288,7 @@ weatherElement4 = document.querySelector("#wind");
 weatherElement4.innerHTML = `Wind: ${windy} km/h`;
 
 let iconElement =  document.querySelector("#icon");
-iconElement.setAttribute("src", 'http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png');
+iconElement.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
 }
 
 function findCity(city) {
