@@ -99,12 +99,18 @@ chooseCity.addEventListener("submit", newCity);
 function showFahrenheitTemperature(event) {
   event.preventDefault();
   let tempElement = document.querySelector("#celsius");
+  
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
   let fahrenheitDegrees = (celsiusTemperature * 9) / 5 + 32;
   tempElement.innerHTML = Math.round(fahrenheitDegrees);
 }
 
 function showCelsiusTemperature(event) {
   event.preventDefault();
+
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
   let tempElement = document.querySelector("#celsius");
   tempElement.innerHTML = Math.round(celsiusTemperature);
 }
