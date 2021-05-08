@@ -1,0 +1,139 @@
+body {
+    margin: 0 auto;
+    width: 700px;
+    height: 480px;
+    max-width: 700px;
+
+  }
+
+  section {
+    margin: 45px;
+    padding-left: 20px;
+    padding-bottom: 15px;
+    border-radius: 3%;
+    background-image: linear-gradient(to right, #e4afcb 0%, #b8cbb8 0%, #b8cbb8 0%, #e2c58b 30%, #c2ce9c 64%, #7edbdc 100%);
+    border: 1px solid linear-gradient(to right, #e4afcb 0%, #b8cbb8 0%, #b8cbb8 0%, #e2c58b 30%, #c2ce9c 64%, #7edbdc 100%); 
+  }
+
+  .row {
+      margin-top: 10px;
+      margin-bottom: 20px;
+  }
+
+  .col1 {     
+      padding-left: 30px;
+          }
+
+  .col2 {
+    padding-left: 55px;
+    text-align: center;
+   
+    font-size: 14px;
+    padding-top: 35px;
+  }
+
+.placeDate {
+margin-top: 50px;
+margin-left: 10px;
+}
+
+
+h5 {
+font-size: 14px;
+font-weight:400;
+}
+
+.weatherBox {
+margin-bottom: 10px;
+margin-top: 13px;
+font-size: 55px;
+}
+
+.ikonka {
+font-size: 20px;
+padding: 10px;
+max-width: 430px;
+margin-bottom: 13px;
+}
+
+.change-units {
+position: relative;
+font-size: 15px;
+top: -32px;  
+text-decoration: none;
+}
+
+.conditions {
+list-style-type: none;
+font-size: 14px;
+margin-left: -20px;
+}
+
+.conditions:first-letter {
+text-transform: capitalize;
+}
+
+.searchCity {
+font-size: 15px;
+width: 240px;
+border-radius: 30px;
+border: 3px solid #FFFCDC;
+
+}
+
+.buttonSearch {
+margin-top: 20px;
+margin-left: 3px;
+margin-right: 3px;
+padding: 3 10px;
+border-radius: 50px;
+border: solid 1px ;
+background-image: linear-gradient(to right, #e4afcb 0%, #b8cbb8 0%, #b8cbb8 0%, #e2c58b 30%, #c2ce9c 64%, #7edbdc 100%);
+border: 3px solid #FFFCDC;
+transition: all 200px ease-in-out;
+cursor: pointer;
+box-shadow: 4px 8px 8px rgba(185, 181, 247, 0.3);
+font-weight: 600;
+}
+
+.buttonSearch:hover {
+background: #FFFCDC;
+color: #84DAD7;
+font-weight: 700;
+}
+
+.buttonHere {
+margin-top: 10px;
+padding: 0 7px;
+border-radius: 50px;
+border: solid 1px ;
+background-image: linear-gradient(to right, #e4afcb 0%, #b8cbb8 0%, #b8cbb8 0%, #e2c58b 30%, #c2ce9c 64%, #7edbdc 100%);
+border: 3px solid #FFFCDC;
+transition: all 200px ease-in-out;
+cursor: pointer;
+box-shadow: 4px 8px 8px rgba(185, 181, 247, 0.3);
+font-weight: 600;
+}
+
+.buttonHere:hover {
+background: #FFFCDC;
+color: #84DAD7;
+font-weight: 700;
+}
+
+
+.signature {
+font-size: 10px;
+display: block;
+text-align: center;
+margin-top: -35px;
+margin-bottom: 15px;
+}
+
+.linkedin {
+color: rgb(59, 56, 56);
+}
+
+.linkedin:hover {
+color:hotpink;
+}

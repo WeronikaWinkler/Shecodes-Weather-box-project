@@ -3,149 +3,14 @@
   <head>
     <title>Rainbow weather box</title>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="src/styless.css"/>
-   
-    <script src="src/script.js"></script>
+    <link rel="stylesheet" href="src/style.css"/>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <script src="https://kit.fontawesome.com/5b4e8e4f00.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
   </head>
-  
-  <style>
-    body {
-      margin: 0 auto;
-      width: 750px;
-      height: 550px;
-    }
-
-    section {
-      margin: 65px;
-      padding-bottom: 25px;
-      border-radius: 3%;
-      background-image: linear-gradient(to right, #e4afcb 0%, #b8cbb8 0%, #b8cbb8 0%, #e2c58b 30%, #c2ce9c 64%, #7edbdc 100%);
-      border: 1px solid linear-gradient(to right, #e4afcb 0%, #b8cbb8 0%, #b8cbb8 0%, #e2c58b 30%, #c2ce9c 64%, #7edbdc 100%); 
-    }
-
-    .row {
-        margin-top: 10px;
-        margin-bottom: 30px;
-    }
-    .col1 {
-        padding-left: 30px;
-        margin-top: 10px;
-    }
-
-    .col2 {
-      padding-left: 30px;
-    }
-
-.placeDate {
-  margin-top: 60px;
-  
-}
-
-h5 {
-  font-size: 14px;
-}
-
-.weatherBox {
-  margin-bottom: 15px;
-  margin-top: 25px;
-  font-size: 65px;
-}
-
-.ikonka {
-font-size: 20px;
-padding: 20px;
-
-}
-
-.change-units {
-  position: relative;
-  font-size: 18px;
-  top: -42px;  
-  text-decoration: none;
-}
-
-.conditions {
-  list-style-type: none;
-  font-size: 14px;
-  margin-left: -20px;
-}
-
-.conditions:first-letter {
-  text-transform: capitalize;
-}
-
-.searchCity {
-  font-size: 15px;
-  width: 270px;
-  border-radius: 30px;
-  border: 3px solid #FFFCDC;
-}
-
-.button1 {
-  margin-top: 20px;
-  padding: 0 10px;
-  border-radius: 50px;
-  border: solid 1px ;
-  background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
-  border: 3px solid #FFFCDC;
-  transition: all 200px ease-in-out;
-  cursor: pointer;
-  box-shadow: 4px 8px 8px rgba(185, 181, 247, 0.3);
-  font-weight: 600;
-}
-
-.button1:hover {
-background: #FFFCDC;
-color: #8B3277;
-font-weight: 700;
-}
-
-.button2 {
-  margin-top: 10px;
-  padding: 0 10px;
-  border-radius: 50px;
-  border: solid 1px ;
-  background-image: linear-gradient(to right, #e4afcb 0%, #b8cbb8 0%, #b8cbb8 0%, #e2c58b 30%, #c2ce9c 64%, #7edbdc 100%);
-  border: 3px solid #FFFCDC;
-  transition: all 200px ease-in-out;
-  cursor: pointer;
-  box-shadow: 4px 8px 8px rgba(185, 181, 247, 0.3);
-  font-weight: 600;
-}
-
-.button2:hover {
-background: #FFFCDC;
-color: #8B3277;
-font-weight: 700;
-}
-
-
-.signature {
-  font-size: 10px;
-  text-align: center;
-  margin-top: -20px;
-}
-
-.linkedin {
-  color: rgb(59, 56, 56);
-}
-
-.linkedin:hover {
-  color:hotpink;
-  
-}
-
-
-hr {
-  width: 130px;
-}
-   
-</style>
+     
 <body>
     <section>
 
@@ -154,7 +19,7 @@ hr {
 
             <div class="col1">
                 <div class="placeDate">
-                    <h2 id="cityNow">What is the weather?</h2> 
+                    <h3 id="cityNow">What's the weather in your city?</h3> 
                     <h5></h5>
                 </div>  
                     
@@ -173,13 +38,14 @@ hr {
                 </div>
 
                 <form id="search-form">
-                    <input type="text" class="searchCity" placeholder="What's the weather in your city?" 
+                    <input type="text" class="searchCity" placeholder="Let's find out..." 
                     class="city-search" id="search-text-input" 
                     autofocus="on"
                     autocomplete="off"
-                    aria-describedby="CityWeather"></input> </br>
-                    <span><button class="button1" id="current-location"><i class="fas fa-map-marker-alt"></i></button></span>
-                    <input type="submit" class="button2" value="Search" id="search-location"/> 
+                    aria-describedby="CityWeather"></input> 
+                    <span><input type="submit" class="buttonSearch" value="Search" id="search-location"/> </span>
+                    
+                    <button class="buttonHere" id="current-location"><i class="fas fa-map-marker-alt"></i></button>
                 </form>
                 
             </div>       
@@ -197,172 +63,9 @@ hr {
     
     <div class="signature">Coded by <strong><a class="linkedin" target="_blank" href="https://www.linkedin.com/in/weronika-winkler-837640112/">Weronika Winkler</a></strong>
     </br>
-    <a target="_blank" href="https://github.com/WeronikaWinkler/Shecodes-Weather-box-project/blob/c38f5147bd5f1de2c7fe86e821f22b5dee463218/index.html">Open-source code</a>
+    <a target="_blank" href="https://github.com/WeronikaWinkler/Shecodes-Weather-box-project.git">Open-source code</a>
     </div>
+    <script src="src/app.js"></script>
   </body>
-
-<script>
-
-//date
-let now = new Date();
-
-let h5 = document.querySelector("h5");
-
-let date = now.getDate();
-let hours = now.getHours();
-let minutes = now.getMinutes();
-let year = now.getFullYear();
-
-let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-let day = days[now.getDay()];
-
-let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-let month = months[now.getMonth()];
-
-
-h5.innerHTML = `${day}, ${date} ${month} ${year}, ${hours}:${minutes}`;
-
-//geolocalization
-function showPosition(position){
-  let lat = position.coords.latitude;
-  let lon = position.coords.longitude;
-  let apiKey = "93fd6b5a846a988fc71bbe304715eb3c";
-  let apiUrlEnd = "http://api.openweathermap.org/data/2.5/weather?";
-  let apiUrlPosition = `${apiUrlEnd}lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrlPosition).then(showWeather);
-}
-
-function getCurrentPosition() {
-  navigator.geolocation.getCurrentPosition(showPosition);
-}
-
-
-let button = document.querySelector("#current-location");
-button.addEventListener("click", getCurrentPosition);
-
-
-//API weather
-
-function showWeather(response) {
-
-let findCities= document.querySelector("#cityNow");
-findCities.innerHTML = response.data.name;
-
-
-let temperature = Math.ceil(response.data.main.temp);
-weatherElement1 = document.querySelector("#celsius");
-weatherElement1.innerHTML = temperature;
-
-celsiusTemperature = response.data.main.temp;
-
-let descriptionElement = document.querySelector("#description");
-descriptionElement.innerHTML = response.data.weather[0].description;
-
-
-
-let humid =  Math.ceil(response.data.main.humidity);
-weatherElement3 = document.querySelector("#humidity");
-weatherElement3.innerHTML = `Humidity: ${humid}%`;
-
-let windy = Math.ceil(response.data.wind.speed);
-weatherElement4 = document.querySelector("#wind");
-weatherElement4.innerHTML = `Wind: ${windy} km/h`;
-
-let iconElement =  document.querySelector("#icon");
-iconElement.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
-}
-
-
-
-
-function findCity(city) {
-let apiKey = "93fd6b5a846a988fc71bbe304715eb3c";
-let searchLocation = document.querySelector("#search-text-input").value;
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchLocation}&appid=${apiKey}&units=metric`;
-axios.get(apiUrl).then(showWeather);
-}
-
-
-function newCity(event) {
-event.preventDefault();
-let city = document.querySelector("#search-text-input").value;
-findCity(city);}
-
-
-let chooseCity = document.querySelector("form");
-chooseCity.addEventListener("submit", newCity);
-
-
-
-//celsius and fahren
-
-
-function showFahrenheitTemperature(event) {
-  event.preventDefault();
-  let tempElement = document.querySelector("#celsius");
-  let fahrenheitDegrees = (celsiusTemperature * 9) / 5 + 32;
-  tempElement.innerHTML = Math.round(fahrenheitDegrees);
-}
-
-function showCelsiusTemperature(event) {
-  event.preventDefault();
-  let tempElement = document.querySelector("#celsius");
-  tempElement.innerHTML = Math.round(celsiusTemperature);
-}
-
-
-let celsiusTemperature = null;
-
-let fahrenheitLink = document.querySelector("#fahrenheit-temp");
-fahrenheitLink.addEventListener("click", showFahrenheitTemperature);
-
-let celsiusLink = document.querySelector("#celsius-temp");
-celsiusLink.addEventListener("click", showCelsiusTemperature);
-
-//next days forecast
-function formatDay(timestamp) {
-let date = new Date(timestamp * 1000);
-let day = date.getDay();
-
-let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-return days[day];
-}
-
-function displayForecast (response) {
-let forecast = response.data.daily;
-let forecastElement = document.querySelector("#forecast");
-let forecastHTML = `<div class="row">`;
-
-
-forecast.forEach(function (forecastDay, index) {
-  if (index < 4) {
-  forecastHTML = forecastHTML + 
-  `<div class="col-2">
-        <div class="weather-forecast-date">${formatDay(forecastDay.dt)}</div>
-        <img
-          src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png"
-          width="38"
-        />
-        <div class="weather-forecast-temperatures">
-          <span class="weather-forecast-temperature-max">${Math.round(forecastDay.temp.max)}</span>
-          <span class="weather-forecast-temperature-min">${Math.round(forecastDay.temp.min)} </span>
-   </div>
-   </div>`;}
-});
-
-          forecastHTML = forecastHTML + `</div>`;
-          forecastElement.innerHTML = forecastHTML;
-
-}
-
-function getForecast(coordinates) {
-  let apiKey = "93fd6b5a846a988fc71bbe304715eb3c";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(displayForecast);
-}
-
-getForecast(response.data.coord);
-
-</script>
  
 </html>
